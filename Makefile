@@ -16,3 +16,7 @@ compile:
 .PHONY: compile
 smoke-test: compile
 	./target/gocheckstyle -config=.gostyle .
+
+.PHONY: testdata
+testdata: compile
+	./target/gocheckstyle .
