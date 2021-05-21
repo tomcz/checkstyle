@@ -1,4 +1,18 @@
-all:
-	bash -c "mkdir -p temp; cd temp && export GOPATH=`pwd`/temp && go get github.com/tomcz/checkstyle/gocheckstyle"
-	temp/bin/gocheckstyle -config=.gostyle .
-	@rm -fr temp
+.PHONY: all
+all: clean test smoke-test
+
+.PHONY: clean
+clean:
+	rm -rf target
+
+.PHONY: test
+test:
+	go test ./...
+
+.PHONY: compile
+compile:
+	go build -o target/gocheckstyle ./gocheckstyle/...
+
+.PHONY: compile
+smoke-test: compile
+	./target/gocheckstyle -config=.gostyle .
