@@ -22,6 +22,6 @@ testdata: compile
 	./target/gocheckstyle .
 
 .PHONY: release
-release: clean target
+release: clean
 	GOOS=linux  GOARCH=amd64 go build -o target/gocheckstyle-linux  ./gocheckstyle/...
 	GOOS=darwin GOARCH=amd64 go build -o target/gocheckstyle-darwin ./gocheckstyle/...
