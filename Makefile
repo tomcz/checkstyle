@@ -20,3 +20,8 @@ smoke-test: compile
 .PHONY: testdata
 testdata: compile
 	./target/gocheckstyle .
+
+.PHONY: release
+release: clean target
+	GOOS=linux  GOARCH=amd64 go build -o target/gocheckstyle-linux  ./gocheckstyle/...
+	GOOS=darwin GOARCH=amd64 go build -o target/gocheckstyle-darwin ./gocheckstyle/...
